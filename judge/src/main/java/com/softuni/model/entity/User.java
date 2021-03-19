@@ -1,19 +1,18 @@
 package com.softuni.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity{
 
-    private String username;//username length must be minimum two characters!
-    private String password;//password length must be minimum three characters!
-    private String email; //email must contains @;
-    private String git; //git must be a valid github address in pattern: https:/github.com/{username}/SpringTestData/…
-    private Role role; // – a Role on register every be user.
+    private String username;
+    private String password;
+    private String email;
+    private String git;
+    private Role role;
+    private Set<Homework> homeworkSet;
 
     public User() {
     }
@@ -62,5 +61,15 @@ public class User extends BaseEntity{
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    public Set<Homework> getHomeworkSet() {
+        return homeworkSet;
+    }
+
+    public void setHomeworkSet(Set<Homework> homeworkSet) {
+        this.homeworkSet = homeworkSet;
     }
 }
