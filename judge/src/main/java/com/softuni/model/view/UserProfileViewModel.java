@@ -20,13 +20,14 @@ public class UserProfileViewModel {
         this.username = username;
     }
 
+
     public Set<String> getHomeworkSet() {
         return homeworkSet;
     }
 
     public UserProfileViewModel setHomeworkSet(Set<String> homeworkSet) {
         this.homeworkSet = homeworkSet;
-        return null;
+        return this;
     }
 
     public String getEmail() {

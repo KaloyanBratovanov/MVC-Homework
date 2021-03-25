@@ -3,6 +3,7 @@ package com.softuni.web;
 import com.softuni.model.binding.UserLoginBindingModel;
 import com.softuni.model.binding.UserRegisterBindingModel;
 import com.softuni.model.service.UserServiceModel;
+import com.softuni.model.view.UserProfileViewModel;
 import com.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -65,6 +66,7 @@ public class UserController {
 //        httpSession.setAttribute("user", user);
 
         userService.login(user);
+
         return "redirect:/";
     }
 
@@ -80,6 +82,7 @@ public class UserController {
     public String registerConfirm(@Valid @ModelAttribute UserRegisterBindingModel userRegisterBindingModel,
                                   BindingResult bindingResult,
                                   RedirectAttributes redirectAttributes){
+
         if (bindingResult.hasErrors()|| !userRegisterBindingModel.getPassword()
         .equals(userRegisterBindingModel.getConfirmPassword())){
             redirectAttributes.addFlashAttribute
@@ -109,16 +112,14 @@ public class UserController {
     }
 
 
-
     @GetMapping("/profile/{id}")
-    public String profile(@PathVariable Long id){
+    public String profile(@PathVariable Long id,Model model){
+
+        UserProfileViewModel userProfileViewModel = userService.findProfileById(id);
 
 
-    userService.findProfileById(id);
+    model.addAttribute("user", userService.findProfileById(id));
 
-        return "redirect:/";
+        return "profile";
     }
-
-
-
 }

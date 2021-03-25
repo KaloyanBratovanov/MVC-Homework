@@ -21,28 +21,28 @@
                 </div>
                 <div class="row mt-4 tm-edit-product-row">
                     <div class="col-xl-7 col-lg-7 col-md-12">
-                        <form  action="" class="tm-edit-product-form" >
+                        <form th:object="${user}" action="" class="tm-edit-product-form" >
                             <div class="input-group mb-3">
                                 <label for="name" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
                                     Username
                                 </label>
-                                <input disabled id="name" name="name" type="text"
+                                <input th:field="*{username}" disabled id="name" name="name" type="text"
                                        class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7">
                             </div>
                             <div class="input-group mb-3">
                                 <label for="homeworks" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 mb-2">All sent homeworks</label>
-                                <textarea disabled id="homeworks" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" rows="3" ></textarea>
+                                <textarea th:field="*{homeworkSet}" disabled id="homeworks" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" rows="3" ></textarea>
                             </div>
                             <div class="input-group mb-3">
                                 <label for="email" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Email
                                 </label>
-                                <input disabled id="email"   name="email" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                <input th:field="*{email}" disabled id="email"   name="email" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
                                        data-large-mode="true">
                             </div>
                             <div class="input-group mb-3">
                                 <label for="git" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Github Address
                                 </label>
-                                <input disabled  id="git" name="git" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-7 col-sm-7">
+                                <input th:field="*{git}" disabled  id="git" name="git" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-7 col-sm-7">
                             </div>
                         </form>
                     </div>
