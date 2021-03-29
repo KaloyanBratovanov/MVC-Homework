@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface HomeWorkRepository extends JpaRepository<Homework, Long> {
+public interface HomeworkRepository extends JpaRepository<Homework, Long> {
 
     Optional<Homework> findTop1ByOrderByComments();
 }

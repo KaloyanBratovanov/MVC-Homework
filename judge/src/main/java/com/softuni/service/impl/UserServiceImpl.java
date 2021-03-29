@@ -100,4 +100,10 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toSet()));
     }
 
+    @Override
+    public User findByUserId(Long id) {
+
+        return userRepository.findById(id).orElse(null);
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.softuni.service;
 
 import com.softuni.model.entity.RoleNameEnum;
+import com.softuni.model.entity.User;
 import com.softuni.model.service.UserServiceModel;
 import com.softuni.model.view.UserProfileViewModel;
 
@@ -23,4 +24,7 @@ public interface UserService {
 
 
     UserProfileViewModel findProfileById(Long id);
+
+    User findByUserId(Long id);
+
 }
