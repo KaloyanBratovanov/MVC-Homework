@@ -52,14 +52,15 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <form action="#" method=""
+                            <form action="/comments/add" method="POST"
+                                  th:object="${commentAddBindingModel}"
                                   class="tm-signup-form">
                                 <div class="form-group">
                                     <label for="score" >Score</label>
                                
-									<small class="text-danger">Score must be between 2 and 6 inclusive</small>
+									<small th:if="${#fields.hasErrors('score')}" th:errors="*{score}" class="text-danger">Score must be between 2 and 6 inclusive</small>
                                     <br/>
-                                    <select required class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7" name="score" id="score">
+                                    <select th:field="*{score}" th:errorclass="bg-danger" required class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7" name="score" id="score">
                                         <option value="" selected>Enter your score</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
