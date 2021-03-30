@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class Comment extends BaseEntity {
 
     private Integer score;
-    private String textContent;// a very long String
+    private String textContent;
     private  User author;
     private Homework homework;
 

@@ -51,4 +51,9 @@ public class HomeworkServiceImpl implements HomeworkService {
         homeworkRepository.save(homework);
 
     }
+
+    @Override
+    public Homework findById(Long homeworkId) {
+        return homeworkRepository.findById(homeworkId).orElse(null);
+    }
 }

@@ -8,6 +8,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -48,5 +50,24 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Override
     public Exercise findByName(String exercise) {
         return exerciseRepository.findByName(exercise).orElse(null);
+    }
+
+    @Override
+    public List<String> findAllActiveExNames() {
+
+        List<Exercise> allEx = new ArrayList<>();
+
+        List<String> allExName = new ArrayList<>();
+
+        allEx = exerciseRepository.findAll();
+
+
+        for (Exercise exercise : allEx) {
+            if (!exercise.getDueDate().isBefore(LocalDateTime.now())){
+                allExName.add(exercise.getName());
+            }
+        }
+
+        return allExName;
     }
 }

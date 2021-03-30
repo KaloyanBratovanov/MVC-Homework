@@ -1,7 +1,9 @@
 package com.softuni.web;
 
 import com.softuni.model.binding.CommentAddBindingModel;
+import com.softuni.model.service.CommentServiceModel;
 import com.softuni.model.view.HomeworkViewModel;
+import com.softuni.service.CommentService;
 import com.softuni.service.HomeworkService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -20,10 +22,12 @@ public class CommentsController {
 
     private final HomeworkService homeworkService;
     private final ModelMapper modelMapper;
+    private final CommentService commentService;
 
-    public CommentsController(HomeworkService homeworkService, ModelMapper modelMapper) {
+    public CommentsController(HomeworkService homeworkService, ModelMapper modelMapper, CommentService commentService) {
         this.homeworkService = homeworkService;
         this.modelMapper = modelMapper;
+        this.commentService = commentService;
     }
 
 
@@ -59,10 +63,14 @@ public class CommentsController {
             return "redirect:add";
         }
 
-        //todo save in db
+        CommentServiceModel serviceModel =
+                modelMapper.map(commentAddBindingModel, CommentServiceModel.class);
+
+        commentService.add(serviceModel, commentAddBindingModel.getHomeworkId());
 
         return "redirect:/";
     }
+
 
 
 
