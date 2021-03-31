@@ -4,6 +4,7 @@ import com.softuni.model.binding.UserLoginBindingModel;
 import com.softuni.model.binding.UserRegisterBindingModel;
 import com.softuni.model.service.UserServiceModel;
 import com.softuni.model.view.UserProfileViewModel;
+import com.softuni.security.CurrentUser;
 import com.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -21,10 +22,12 @@ public class UserController {
 
     private final UserService userService;
     private final ModelMapper modelMapper;
+    private final CurrentUser currentUser;
 
-    public UserController(UserService userService, ModelMapper modelMapper) {
+    public UserController(UserService userService, ModelMapper modelMapper, CurrentUser currentUser) {
         this.userService = userService;
         this.modelMapper = modelMapper;
+        this.currentUser = currentUser;
     }
 
 
@@ -114,6 +117,12 @@ public class UserController {
 
     @GetMapping("/profile/{id}")
     public String profile(@PathVariable Long id,Model model){
+
+        if (currentUser.isAnonymous()){
+            return "redirect:/users/login";
+        }
+
+
 
         UserProfileViewModel userProfileViewModel = userService.findProfileById(id);
 

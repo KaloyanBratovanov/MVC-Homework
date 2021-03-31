@@ -15,6 +15,7 @@ public class Comment extends BaseEntity {
     private  User author;
     private Homework homework;
 
+
     public Comment() {
     }
 
